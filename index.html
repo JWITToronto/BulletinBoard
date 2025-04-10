@@ -16,6 +16,14 @@
         color: orangered;
         text-align: left;
     }
+    #colHeadOne{
+        color: black;
+        text-align: left;
+    }
+	#colHeadTwo{
+        color: black;
+        text-align: right;
+    }
     #bluecolor{
         color: blue;
         text-align: left;
@@ -30,10 +38,16 @@
     }
 
     th{
-        font-size: 700%;
+        font-size: 500%;
         font-weight: bold;
 
     }
+	td{
+        font-size: 300%;
+        font-weight: bold;
+
+    }
+	
     </style>
 </head>
 <body>
@@ -43,25 +57,34 @@
                 <br><br><br>
                 <table class="table table-bordered">
                     <thead>
-                        <tr>
-                            <th id="batch">R-BATCH</th>
-                            <th style="color: orangered; text-align: right;" id="rBatchDate"></th>
+					    <tr>
+						    <th id="colHeadOne">BATCH</th>
+                            <th id="colHeadOne">YESTERDAY AFTER 11AM</th>
+                            <th id="colHeadTwo">TODAY AFTER 11AM</th>
                         </tr>
                         <tr>
-                            <th id="bluecolor">HAS + RE/RE</th>
-                            <th style="color: blue; text-align: right;" id="hasrebatch"></th>
+                            <td id="batch">R-BATCH</td>
+							<td style="color: orangered; text-align: left;" id="rBatchDate_Yesterday"></td>
+                            <td style="color: orangered; text-align: left;" id="rBatchDate"></td>						    
                         </tr>
                         <tr>
-                            <th id="bluecolor">HIP + BATCH</th>
-                            <th style="color: blue; text-align: right;" id="hipbatch"></th>
+                            <td id="bluecolor">HAS + RE/RE</td>
+							<td style="color: blue; text-align: left;" id="hasrebatch_Yesterday"></td>
+							<td style="color: blue; text-align: left;" id="hasrebatch"></td>
                         </tr>
                         <tr>
-                            <th id="blackcolor">HOUSE LOTS</th>
-                            <th style="color: black; text-align: right;" id="houseLots"></th>
+                            <td id="bluecolor">HIP + BATCH</td>
+							<td style="color: blue; text-align: left;" id="hipbatch_Yesterday"></td>
+							<td style="color: blue; text-align: left;" id="hipbatch"></td>
+                           
                         </tr>
                         <tr>
-                            <th id="noOrders">NO ORDERS</th>
-                            <th style="color: red; text-align: right;" id="noOrdersDate"></th>
+                            <td id="blackcolor">HOUSE LOTS</td>
+							<td style="color: black; text-align: center;" colspan="2" id="houseLots"></td>
+                        </tr>
+                        <tr>
+                            <td id="noOrders">NO ORDERS</td>
+							<td style="color: red; text-align: center;" colspan="2" id="noOrdersDate"></td>   
                         </tr>
                     </thead>
                 </table>
@@ -82,14 +105,28 @@
             let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
             let rBatchDate  = addBusinessDays(5);
+			let rBatchDate_Yesterday  = addBusinessDays(4);
+			
 		    let HasReBatchDate  = addBusinessDays(9);
+			let HasReBatchDate_Yesterday  = addBusinessDays(8);
+			
 			let HipBatchDate  = addBusinessDays(8);
+			let HipBatchDate_Yesterday = addBusinessDays(7);
+			
 			let NextNoOrderDate = noOrdersDate();
-		
+		    let NextNoOrderDate_Yesterday = noOrdersDate();
+		    
             document.getElementById('rBatchDate').innerText = months[rBatchDate.getMonth()] + " " + rBatchDate.getDate() + ", " + rBatchDate.getFullYear();
+			document.getElementById('rBatchDate_Yesterday').innerText = months[rBatchDate_Yesterday.getMonth()] + " " + rBatchDate_Yesterday.getDate() + ", " + rBatchDate_Yesterday.getFullYear();
+			
 			document.getElementById('hasrebatch').innerText = months[HasReBatchDate.getMonth()] + " " + HasReBatchDate.getDate() + ", " + HasReBatchDate.getFullYear();
+			document.getElementById('hasrebatch_Yesterday').innerText = months[HasReBatchDate_Yesterday.getMonth()] + " " + HasReBatchDate_Yesterday.getDate() + ", " + HasReBatchDate_Yesterday.getFullYear();
+			
 			document.getElementById('hipbatch').innerText = months[HipBatchDate.getMonth()] + " " + HipBatchDate.getDate() + ", " + HipBatchDate.getFullYear();
+			document.getElementById('hipbatch_Yesterday').innerText = months[HipBatchDate_Yesterday.getMonth()] + " " + HipBatchDate_Yesterday.getDate() + ", " + HipBatchDate_Yesterday.getFullYear();
+			
             document.getElementById('houseLots').innerText = "4 W.L.T";
+			
 			document.getElementById('noOrdersDate').innerText = months[NextNoOrderDate.getMonth()] + " " + NextNoOrderDate.getDate() + ", " + NextNoOrderDate.getFullYear();
 		
 			function addBusinessDays(days)
@@ -127,22 +164,6 @@
 				return arrayList[0];
            }
 			
-      
- 
-        function reloadAt11AM() {
-            const now = new Date();
-            const day = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-            const hours = now.getHours();
-            const minutes = now.getMinutes();
-
-            // Check if it's Monday to Friday and 11 AM
-            if (day >= 1 && day <= 5 && hours === 11 && minutes === 0) {
-                location.reload();
-            }
-        }
-
-        // Check every minute
-        setInterval(reloadAt11AM, 60000);
     </script>
 </body>
 </html>
