@@ -108,19 +108,19 @@
 		    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
             let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-            let rBatchDate  = addBusinessDays(6);
-			let rBatchDate_Yesterday  = addBusinessDays(5);
+            let rBatchDate  = addBusinessDays(5);
+			let rBatchDate_Yesterday  = addBusinessDays(4);
 			
-		    let HasReBatchDate  = addBusinessDays(10);
-			let HasReBatchDate_Yesterday  = addBusinessDays(9);
+		    let HasReBatchDate  = addBusinessDays(9);
+			let HasReBatchDate_Yesterday  = addBusinessDays(8);
 			
-			let HipBatchDate  = addBusinessDays(9);
-			let HipBatchDate_Yesterday = addBusinessDays(8);
+			let HipBatchDate  = addBusinessDays(8);
+			let HipBatchDate_Yesterday = addBusinessDays(7);
 			
 			let NextNoOrderDate = noOrdersDate();
 		    let NextNoOrderDate_Yesterday = noOrdersDate();
 			
-			let ServiceRBatchDate = addBusinessDays(7);
+			let ServiceRBatchDate = addBusinessDays(6);
 		    
             document.getElementById('rBatchDate').innerText = months[rBatchDate.getMonth()] + " " + rBatchDate.getDate() + ", " + rBatchDate.getFullYear();
 			document.getElementById('rBatchDate_Yesterday').innerText = months[rBatchDate_Yesterday.getMonth()] + " " + rBatchDate_Yesterday.getDate() + ", " + rBatchDate_Yesterday.getFullYear();
