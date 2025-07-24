@@ -136,16 +136,16 @@
 			document.getElementById('noOrdersDate').innerText = months[NextNoOrderDate.getMonth()] + " " + NextNoOrderDate.getDate() + ", " + NextNoOrderDate.getFullYear();
 			
 			document.getElementById('ServiceRBatchDate').innerText = months[ServiceRBatchDate.getMonth()] + " " + ServiceRBatchDate.getDate() + ", " + ServiceRBatchDate.getFullYear();
-		
-			function addBusinessDays(days)
-			{
-				let currentDate = new Date();
-
-			    function isHoliday(date) 
+		function isHoliday(date) 
 				{
 					let dateString = date.toLocaleDateString('en-GB'); // Format date as 'DD/MM/YY'
 					return holidays.includes(dateString);
                 }
+			function addBusinessDays(days)
+			{
+				let currentDate = new Date();
+
+			    
 
 				for (let i = 0; i < days; i++) 
 				{
