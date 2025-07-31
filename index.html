@@ -8,170 +8,149 @@
     <script src="bootstrap.min.js"></script>
     <script src="angular.min.js"></script>
     <style>
-        h1{
-        font-size: 950%;
-        
-    }
-    #batch{
-        color: orangered;
-        text-align: left;
-    }
-    #colHeadOne{
-        color: black;
-        text-align: left;
-    }
-	#colHeadTwo{
-        color: black;
-        text-align: right;
-    }
-    #bluecolor{
-        color: blue;
-        text-align: left;
-    }
-    #blackcolor{
-        color: black;
-        text-align: left;
-    }
-    #noOrders{
-        color: red;
-        text-align: left;
-    }
-
-    th{
-        font-size: 500%;
-        font-weight: bold;
-
-    }
-	td{
-        font-size: 300%;
-        font-weight: bold;
-
-    }
-	
+        h1 {
+            font-size: 950%;
+        }
+        #batch {
+            color: orangered;
+            text-align: left;
+        }
+        #colHeadOne {
+            color: black;
+            text-align: left;
+        }
+        #colHeadTwo {
+            color: black;
+            text-align: right;
+        }
+        #bluecolor {
+            color: blue;
+            text-align: left;
+        }
+        #blackcolor {
+            color: black;
+            text-align: left;
+        }
+        #noOrders {
+            color: red;
+            text-align: left;
+        }
+        th {
+            font-size: 500%;
+            font-weight: bold;
+        }
+        td {
+            font-size: 300%;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <br><br><br>
-                <table class="table table-bordered">
-                    <thead>
-					    <tr>
-						    <th id="colHeadOne">BATCH</th>
-                            <th id="colHeadOne">BEFORE 11AM</th>
-                            <th id="colHeadTwo">AFTER 11AM</th>
-                        </tr>
-                        <tr>
-                            <td id="batch">R-BATCH</td>
-							<td style="color: orangered; text-align: center;" id="rBatchDate_Yesterday"></td>
-                            <td style="color: orangered; text-align: center;" id="rBatchDate"></td>						    
-                        </tr>
-                        <tr>
-                            <td id="bluecolor">HAS + RE/RE</td>
-							<td style="color: blue; text-align: center;" id="hasrebatch_Yesterday"></td>
-							<td style="color: blue; text-align: center;" id="hasrebatch"></td>
-                        </tr>
-                        <tr>
-                            <td id="bluecolor">HIP + BATCH</td>
-							<td style="color: blue; text-align: center;" id="hipbatch_Yesterday"></td>
-							<td style="color: blue; text-align: center;" id="hipbatch"></td>
-                           
-                        </tr>
-                        <tr>
-                            <td id="blackcolor">HOUSE LOTS</td>
-							<td style="color: black; text-align: center;" colspan="2" id="houseLots"></td>
-                        </tr>
-                        <tr>
-                            <td id="noOrders">NO ORDERS</td>
-							<td style="color: red; text-align: center;" colspan="2" id="noOrdersDate"></td>   
-                        </tr>
-						<tr>
-                            <td id="noOrders">SERVICE R-BATCH</td>
-							<td style="color: red; text-align: center;" colspan="2" id="ServiceRBatchDate"></td>   
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <br><br><br>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th id="colHeadOne">BATCH</th>
+                        <th id="colHeadOne">BEFORE 11AM</th>
+                        <th id="colHeadTwo">AFTER 11AM</th>
+                    </tr>
+                    <tr>
+                        <td id="batch">R-BATCH</td>
+                        <td style="color: orangered; text-align: center;" id="rBatchDate_Yesterday"></td>
+                        <td style="color: orangered; text-align: center;" id="rBatchDate"></td>
+                    </tr>
+                    <tr>
+                        <td id="bluecolor">HAS + RE/RE</td>
+                        <td style="color: blue; text-align: center;" id="hasrebatch_Yesterday"></td>
+                        <td style="color: blue; text-align: center;" id="hasrebatch"></td>
+                    </tr>
+                    <tr>
+                        <td id="bluecolor">HIP + BATCH</td>
+                        <td style="color: blue; text-align: center;" id="hipbatch_Yesterday"></td>
+                        <td style="color: blue; text-align: center;" id="hipbatch"></td>
+                    </tr>
+                    <tr>
+                        <td id="blackcolor">HOUSE LOTS</td>
+                        <td style="color: black; text-align: center;" colspan="2" id="houseLots"></td>
+                    </tr>
+                    <tr>
+                        <td id="noOrders">NO ORDERS</td>
+                        <td style="color: red; text-align: center;" colspan="2" id="noOrdersDate"></td>
+                    </tr>
+                    <tr>
+                        <td id="noOrders">SERVICE R-BATCH</td>
+                        <td style="color: red; text-align: center;" colspan="2" id="ServiceRBatchDate"></td>
+                    </tr>
+                </thead>
+            </table>
         </div>
     </div>
-    <script>
- 
-		    let holidays = [
-				new Date("January 1, 2025"), new Date("February 17, 2025"), new Date("March 27, 2025"), new Date("March 28, 2025"),
-				new Date("April 18, 2025"), new Date("May 19, 2025"), new Date("June 26, 2025"), new Date("June 27, 2025"),
-				new Date("July 1, 2025"), new Date("August 4, 2025"), new Date("September 1, 2025"), new Date("September 25, 2025"), new Date("September 26, 2025"),
-				new Date("October 13, 2025"), new Date("December 18, 2025"), new Date("December 19, 2025"), new Date("December 25, 2025"),
-				new Date("December 26, 2025")
-			];
-		    	
-		    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-            let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+</div>
+<script>
+    let holidays = [
+        new Date("January 1, 2025"), new Date("February 17, 2025"), new Date("March 27, 2025"), new Date("March 28, 2025"),
+        new Date("April 18, 2025"), new Date("May 19, 2025"), new Date("June 26, 2025"), new Date("June 27, 2025"),
+        new Date("July 1, 2025"), new Date("August 4, 2025"), new Date("September 1, 2025"), new Date("September 25, 2025"), new Date("September 26, 2025"),
+        new Date("October 13, 2025"), new Date("December 18, 2025"), new Date("December 19, 2025"), new Date("December 25, 2025"),
+        new Date("December 26, 2025")
+    ];
 
-            let rBatchDate  = addBusinessDays(5);
-			let rBatchDate_Yesterday  = addBusinessDays(4);
-			
-		    let HasReBatchDate  = addBusinessDays(10);
-			let HasReBatchDate_Yesterday  = addBusinessDays(9);
-			
-			let HipBatchDate  = addBusinessDays(8);
-			let HipBatchDate_Yesterday = addBusinessDays(7);
-			
-			let NextNoOrderDate = noOrdersDate();
-		    let NextNoOrderDate_Yesterday = noOrdersDate();
-			
-			let ServiceRBatchDate = addBusinessDays(6);
-		    
-            document.getElementById('rBatchDate').innerText = months[rBatchDate.getMonth()] + " " + rBatchDate.getDate() + ", " + rBatchDate.getFullYear();
-			document.getElementById('rBatchDate_Yesterday').innerText = months[rBatchDate_Yesterday.getMonth()] + " " + rBatchDate_Yesterday.getDate() + ", " + rBatchDate_Yesterday.getFullYear();
-			
-			document.getElementById('hasrebatch').innerText = months[HasReBatchDate.getMonth()] + " " + HasReBatchDate.getDate() + ", " + HasReBatchDate.getFullYear();
-			document.getElementById('hasrebatch_Yesterday').innerText = months[HasReBatchDate_Yesterday.getMonth()] + " " + HasReBatchDate_Yesterday.getDate() + ", " + HasReBatchDate_Yesterday.getFullYear();
-			
-			document.getElementById('hipbatch').innerText = months[HipBatchDate.getMonth()] + " " + HipBatchDate.getDate() + ", " + HipBatchDate.getFullYear();
-			document.getElementById('hipbatch_Yesterday').innerText = months[HipBatchDate_Yesterday.getMonth()] + " " + HipBatchDate_Yesterday.getDate() + ", " + HipBatchDate_Yesterday.getFullYear();
-			
-            document.getElementById('houseLots').innerText = "4 W.L.T";
-			
-			document.getElementById('noOrdersDate').innerText = months[NextNoOrderDate.getMonth()] + " " + NextNoOrderDate.getDate() + ", " + NextNoOrderDate.getFullYear();
-			
-			document.getElementById('ServiceRBatchDate').innerText = months[ServiceRBatchDate.getMonth()] + " " + ServiceRBatchDate.getDate() + ", " + ServiceRBatchDate.getFullYear();
-		function isHoliday(date) 
-				{
-					let dateString = date.toLocaleDateString('en-GB'); // Format date as 'DD/MM/YY'
-					return holidays.includes(dateString);
-                }
-			function addBusinessDays(days)
-			{
-				let currentDate = new Date();
+    function formatDateToronto(date) {
+        return new Intl.DateTimeFormat('en-CA', {
+            timeZone: 'America/Toronto',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }).format(date);
+    }
 
-			    
+    function isHoliday(date) {
+        return holidays.some(h => h.toDateString() === date.toDateString());
+    }
 
-				for (let i = 0; i < days; i++) 
-				{
-					do 
-					{
-						currentDate.setDate(currentDate.getDate() + 1);
-					} while (currentDate.getDay() === 0 || currentDate.getDay() === 6 || isHoliday(currentDate));
-				}
-
-				return currentDate;
+    function addBusinessDays(days) {
+        let currentDate = new Date();
+        let addedDays = 0;
+        while (addedDays < days) {
+            currentDate.setDate(currentDate.getDate() + 1);
+            if (currentDate.getDay() !== 0 && currentDate.getDay() !== 6 && !isHoliday(currentDate)) {
+                addedDays++;
             }
-			function noOrdersDate() 
-			{
-				let today = new Date();
-                let arrayList = []; 
-				
-				for (let i = 0; i < holidays.length; i++)
-				{
-						if (holidays[i] > today) 
-						{
-							arrayList.push(holidays[i]);
-						}
-				}
-				return arrayList[0];
-           }
-			
-    </script>
+        }
+        return currentDate;
+    }
+
+    function noOrdersDate() {
+        let today = new Date();
+        for (let i = 0; i < holidays.length; i++) {
+            if (holidays[i] > today) {
+                return holidays[i];
+            }
+        }
+        return null;
+    }
+
+    let rBatchDate = addBusinessDays(5);
+    let rBatchDate_Yesterday = addBusinessDays(4);
+    let HasReBatchDate = addBusinessDays(10);
+    let HasReBatchDate_Yesterday = addBusinessDays(9);
+    let HipBatchDate = addBusinessDays(8);
+    let HipBatchDate_Yesterday = addBusinessDays(7);
+    let NextNoOrderDate = noOrdersDate();
+    let ServiceRBatchDate = addBusinessDays(6);
+
+    document.getElementById('rBatchDate').innerText = formatDateToronto(rBatchDate);
+    document.getElementById('rBatchDate_Yesterday').innerText = formatDateToronto(rBatchDate_Yesterday);
+    document.getElementById('hasrebatch').innerText = formatDateToronto(HasReBatchDate);
+    document.getElementById('hasrebatch_Yesterday').innerText = formatDateToronto(HasReBatchDate_Yesterday);
+    document.getElementById('hipbatch').innerText = formatDateToronto(HipBatchDate);
+    document.getElementById('hipbatch_Yesterday').innerText = formatDateToronto(HipBatchDate_Yesterday);
+    document.getElementById('houseLots').innerText = "4 W.L.T";
+    document.getElementById('noOrdersDate').innerText = formatDateToronto(NextNoOrderDate);
+    document.getElementById('ServiceRBatchDate').innerText = formatDateToronto(ServiceRBatchDate);
+</script>
 </body>
 </html>
